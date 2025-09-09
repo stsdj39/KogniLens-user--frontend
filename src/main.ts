@@ -15,7 +15,8 @@ import { createApp } from 'vue'
 
 // Styles
 import 'unfonts.css'
-
+// 导入 Tailwind CSS
+import './styles/main.css'
 const app = createApp(App)
 
 registerPlugins(app)
