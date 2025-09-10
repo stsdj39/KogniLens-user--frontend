@@ -7,9 +7,7 @@
     </div>
 
     <!-- HelloWorld 组件 -->
-    <div class="mb-6">
-      <HelloWorld />
-    </div>
+    <div class="mb-6"></div>
 
     <!-- 分析面板组件 -->
     <div class="mb-6">
@@ -25,6 +23,6 @@
 // 页面文件只负责组装组件，不包含具体业务逻辑
 // 所有具体功能都应封装在各个组件中：
 // - HelloWorld: 欢迎信息组件
-// - AnalyticsPanel: 数据分析面板组件  
+// - AnalyticsPanel: 数据分析面板组件
 // - AppFooter: 页脚组件
 </script>

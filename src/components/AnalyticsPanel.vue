@@ -22,9 +22,15 @@
             @click="refreshData"
             prepend-icon="mdi-refresh"
             block
-            :loading="loading"
+            :disabled="loading"
           >
-            刷新数据
+            <InlineLoading 
+              v-if="loading"
+              text="刷新中..."
+              size="16"
+              color="white"
+            />
+            <span v-else>刷新数据</span>
           </v-btn>
         </v-col>
       </v-row>

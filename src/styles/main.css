@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 自定义 Logo 样式 */
+@layer components {
+    .logo-brand {
+        width: 221px !important;
+        height: 57px !important;
+    }
+}

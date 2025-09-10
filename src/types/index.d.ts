@@ -9,6 +9,34 @@ export interface BaseEntity {
   updatedAt: string
 }
 
+//图片类型定义
+export interface Image {
+  name: string
+  src: string
+}
+
+// ============================================================================
+// 加载状态类型
+// ============================================================================
+export interface LoadingConfig {
+  text?: string
+  color?: string
+  size?: number | string
+  width?: number | string
+}
+
+export interface GlobalLoadingConfig extends LoadingConfig {
+  persistent?: boolean
+}
+
+export interface PageLoadingConfig extends LoadingConfig {
+  height?: string | number
+  minHeight?: string | number
+}
+
+export interface InlineLoadingConfig extends LoadingConfig {
+  center?: boolean
+}
 // ============================================================================
 // 用户相关类型
 // ============================================================================
@@ -213,10 +241,10 @@ export type Nullable<T> = T | null
 export type Optional<T> = T | undefined
 export type RecursivePartial<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]
-    ? RecursivePartial<U>[]
-    : T[P] extends object
-    ? RecursivePartial<T[P]>
-    : T[P]
+  ? RecursivePartial<U>[]
+  : T[P] extends object
+  ? RecursivePartial<T[P]>
+  : T[P]
 }
 
 // ============================================================================
@@ -252,4 +280,73 @@ export interface RouteMeta {
   roles?: UserRole[]
   layout?: string
   icon?: string
+}
+
+// ============================================================================
+// 文章和内容管理类型
+// ============================================================================
+
+// 文章分类类型
+export interface ArticleCategory extends BaseEntity {
+  channelName: string
+  createId: number
+  pid: number
+  updateId: number
+  userDefinePos: string
+  open: boolean
+}
+
+// 获取所有文章分类响应
+export interface ArticleCategoryResponse {
+  selectList: ArticleCategory[]
+}
+
+// 文章类型
+export interface Article extends BaseEntity {
+  title: string
+  author: string
+  source: string
+  source_type: string
+  textcontent: string
+  article: string
+  desc: string
+  url: string
+  cover_type: string
+  cover: Image[]
+  image: Image[]
+  imagenum: number
+  site: string
+  download: string
+  channel_pid: number
+  cms_newsid: string | null
+  time: string
+  mediatype: number
+  channel_id: number
+  status: number
+  _id: string
+  cid: string
+}
+
+// 根据分类获取文章列表响应
+export interface ArticleListResponse {
+  newsList: Article[]
+}
+
+// 文章查询参数
+export interface ArticleQueryParams extends PaginationParams {
+  categoryId?: number
+  channelPid?: number
+  status?: number
+  searchKeyword?: string
+  startDate?: string
+  endDate?: string
+}
+
+// 文章统计信息
+export interface ArticleStats {
+  totalCount: number
+  categoryCount: number
+  todayCount: number
+  weekCount: number
+  monthCount: number
 }

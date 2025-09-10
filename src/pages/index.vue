@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 页面由组件组装而成 -->
-    <HelloWorld />
   </div>
 </template>
 
