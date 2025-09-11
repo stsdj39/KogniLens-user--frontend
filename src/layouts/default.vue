@@ -9,7 +9,7 @@
             width="221"
             height="57"
             contain
-            @click="$router.push('/')"
+            @click="$router.push('/article')"
           ></v-img>
         </div>
         <v-btn
@@ -22,7 +22,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-responsive max-width="160">
+        <v-responsive max-width="160" class="me-10">
           <v-text-field
             density="compact"
             label="搜索"
@@ -33,7 +33,33 @@
             single-line
           ></v-text-field>
         </v-responsive>
-        <v-avatar class="ml-10" color="grey-darken-1" size="32"></v-avatar>
+        <!-- 登录注册 -->
+        <v-menu min-width="200px" class="pl-10">
+          <template v-slot:activator="{ props }">
+            <v-btn icon v-bind="props">
+              <v-avatar color="brown" size="30">
+                <span class="text-h5">{{ user.initials }}</span>
+              </v-avatar>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-text>
+              <div class="mx-auto text-center">
+                <v-avatar color="brown">
+                  <span class="text-h5">{{ user.initials }}</span>
+                </v-avatar>
+                <h3>{{ user.fullName }}</h3>
+                <p class="text-caption mt-1">
+                  {{ user.email }}
+                </p>
+                <v-divider class="my-3"></v-divider>
+                <v-btn variant="text" rounded> Edit Account </v-btn>
+                <v-divider class="my-3"></v-divider>
+                <v-btn variant="text" rounded> Disconnect </v-btn>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-menu>
       </v-container>
     </v-app-bar>
 
@@ -73,10 +99,10 @@
     </v-main>
 
     <!-- 全局加载组件 -->
-    <GlobalLoading
+    <!-- <GlobalLoading
       :loading="loadingStore.globalLoading"
       :text="loadingStore.globalLoadingText"
-    />
+    /> -->
   </v-app>
 </template>
 
@@ -84,9 +110,14 @@
 import type { NavigationLink, Image } from "../types";
 import { useLoadingStore } from "../stores/loading";
 
-// 使用加载状态管理
-const loadingStore = useLoadingStore();
-
+// // 使用加载状态管理
+// const loadingStore = useLoadingStore();
+// 用户数据
+const user = {
+  initials: "JD",
+  fullName: "John Doe",
+  email: "john.doe@doe.com",
+};
 //图片
 const images: Image[] = [
   {
@@ -96,10 +127,9 @@ const images: Image[] = [
 ];
 // 导航链接配置
 const navigationLinks: NavigationLink[] = [
-  { name: "科情推荐", route: "/" },
-  { name: "Analytics", route: "/analytics" },
-  { name: "Loading Demo", route: "/loading-demo" },
-  { name: "TS Demo", route: "/typescript-demo" },
+  { name: "科情推荐", route: "/home/article" },
+  { name: "智能检索", route: "/analytics" },
+  { name: "智能报告撰写", route: "/loading-demo" },
 ];
 //侧边导航
 const sideNavigationLinks: NavigationLink[] = [

@@ -105,10 +105,9 @@ export interface ButtonProps extends BaseComponentProps {
 // API 相关类型
 // ============================================================================
 export interface ApiResponse<T = any> {
-  success: boolean
+  code: number
+  msg: string
   data: T
-  message?: string
-  code?: number
 }
 
 export interface ApiError {
@@ -287,66 +286,21 @@ export interface RouteMeta {
 // ============================================================================
 
 // 文章分类类型
-export interface ArticleCategory extends BaseEntity {
-  channelName: string
-  createId: number
-  pid: number
-  updateId: number
-  userDefinePos: string
-  open: boolean
-}
-
-// 获取所有文章分类响应
-export interface ArticleCategoryResponse {
-  selectList: ArticleCategory[]
+export interface ArticleCategory {
+  id: number
+  name: string
 }
 
 // 文章类型
-export interface Article extends BaseEntity {
+export interface Article {
+  id: number
   title: string
-  author: string
-  source: string
-  source_type: string
-  textcontent: string
-  article: string
-  desc: string
-  url: string
-  cover_type: string
-  cover: Image[]
-  image: Image[]
-  imagenum: number
-  site: string
-  download: string
-  channel_pid: number
-  cms_newsid: string | null
-  time: string
-  mediatype: number
-  channel_id: number
-  status: number
-  _id: string
-  cid: string
-}
-
-// 根据分类获取文章列表响应
-export interface ArticleListResponse {
-  newsList: Article[]
+  content: string
+  kgStructure: string
+  publishTime: string
 }
 
 // 文章查询参数
-export interface ArticleQueryParams extends PaginationParams {
+export interface ArticleQueryParams {
   categoryId?: number
-  channelPid?: number
-  status?: number
-  searchKeyword?: string
-  startDate?: string
-  endDate?: string
-}
-
-// 文章统计信息
-export interface ArticleStats {
-  totalCount: number
-  categoryCount: number
-  todayCount: number
-  weekCount: number
-  monthCount: number
 }
