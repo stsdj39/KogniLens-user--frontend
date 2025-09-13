@@ -6,7 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import AnalyticContent from "@/components/Analytics/AnalyticContent.vue";
 </script>
 <style scoped lang="scss">
 .fill-height {

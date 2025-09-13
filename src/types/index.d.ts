@@ -293,7 +293,7 @@ export interface ArticleCategory {
 
 // 文章类型
 export interface Article {
-  id: number
+  articleId: number
   title: string
   content: string
   kgStructure: string
@@ -303,4 +303,14 @@ export interface Article {
 // 文章查询参数
 export interface ArticleQueryParams {
   categoryId?: number
+}
+
+// 在现有类型定义中添加
+export interface Comment {
+  id: number
+  userName: string
+  content: string
+  commentTime: string
+  isAuthor: boolean
+  likes: number
 }

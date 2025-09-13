@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar flat>
+    <v-app-bar flat class="content-header">
       <v-container class="mx-auto d-flex align-center justify-center">
         <div class="me-15" style="width: 130px">
           <v-img
@@ -9,7 +9,7 @@
             width="221"
             height="57"
             contain
-            @click="$router.push('/article')"
+            @click="$router.push('/home/article')"
           ></v-img>
         </div>
         <v-btn
@@ -34,7 +34,13 @@
           ></v-text-field>
         </v-responsive>
         <!-- 登录注册 -->
-        <v-menu min-width="200px" class="pl-10">
+        <v-menu 
+          min-width="200px" 
+          class="pl-10"
+          :close-on-content-click="false"
+          location="bottom end"
+          offset="8"
+        >
           <template v-slot:activator="{ props }">
             <v-btn icon v-bind="props">
               <v-avatar color="brown" size="30">
@@ -42,7 +48,7 @@
               </v-avatar>
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="user-menu">
             <v-card-text>
               <div class="mx-auto text-center">
                 <v-avatar color="brown">
@@ -52,10 +58,15 @@
                 <p class="text-caption mt-1">
                   {{ user.email }}
                 </p>
-                <v-divider class="my-3"></v-divider>
-                <v-btn variant="text" rounded> Edit Account </v-btn>
-                <v-divider class="my-3"></v-divider>
-                <v-btn variant="text" rounded> Disconnect </v-btn>
+                <div
+                  v-for="userLink in userNavigationLinks"
+                  :key="userLink.name"
+                >
+                  <v-divider class="my-3"> </v-divider>
+                  <v-btn variant="text" rounded :to="userLink.route">
+                    {{ userLink.name }}
+                  </v-btn>
+                </div>
               </div>
             </v-card-text>
           </v-card>
@@ -63,10 +74,11 @@
       </v-container>
     </v-app-bar>
 
-    <v-main class="bg-grey-lighten-3">
+    <v-main class="bg-grey-lighten-3 pt-16">
       <v-container>
         <v-row>
-          <v-col cols="2">
+          <!-- 侧边栏 -->
+          <!-- <v-col cols="2">
             <v-sheet rounded="lg">
               <v-list rounded="lg">
                 <v-list-item
@@ -86,7 +98,7 @@
                 ></v-list-item>
               </v-list>
             </v-sheet>
-          </v-col>
+          </v-col> -->
 
           <v-col>
             <v-sheet min-height="70vh" rounded="lg">
@@ -132,10 +144,40 @@ const navigationLinks: NavigationLink[] = [
   { name: "智能报告撰写", route: "/loading-demo" },
 ];
 //侧边导航
-const sideNavigationLinks: NavigationLink[] = [
+// const sideNavigationLinks: NavigationLink[] = [
+//   { name: "历史", route: "/personal/history" },
+//   { name: "收藏", route: "/personal/favorites" },
+//   { name: "设置", route: "/personal/settings" },
+//   { name: "帮助", route: "/personal/help" },
+// ];
+// 用户导航
+const userNavigationLinks: NavigationLink[] = [
   { name: "历史", route: "/personal/history" },
   { name: "收藏", route: "/personal/favorites" },
   { name: "设置", route: "/personal/settings" },
   { name: "帮助", route: "/personal/help" },
 ];
 </script>
+
+<style scoped lang="scss">
+.content-header {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0;
+  right: 0 !important;
+  z-index: 1000 !important;
+  width: 100% !important;
+}
+.user-menu {
+  // 确保菜单有固定的最小宽度
+  min-width: 200px !important;
+  // 添加阴影效果
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  // 确保菜单内容不会溢出
+  max-width: 250px;
+  .v-card-text {
+    padding: 16px;
+  }
+}
+
+</style>

@@ -23,22 +23,28 @@
     </v-card-title> -->
 
     <!-- 文章列表 -->
-    <v-list :items="displayItems" lines="three" item-props>
-      <template v-slot:title="{ item }">
-        <div class="text-h6">{{ item.title }}</div>
-      </template>
-      <template v-slot:subtitle="{ item }">
-        <div>{{ item.content }}</div>
-        <div class="text-caption text-grey">
-          {{ formatDate(item.publishTime) }}
-        </div>
-      </template>
+    <v-list lines="three">
+      <v-list-item
+        v-for="item in displayItems"
+        :key="item.articleId"
+        :title="item.title"
+        :subtitle="item.content"
+        @click="goToArticleDetail(item.articleId)"
+      >
+        <template v-slot:subtitle>
+          <div>{{ item.content }}</div>
+          <div class="text-caption text-grey">
+            {{ formatDate(item.publishTime) }}
+          </div>
+        </template>
+      </v-list-item>
     </v-list>
   </v-card>
 </template>
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import {
   MOCK_CATEGORIES,
   mockGetCategoriesResponse,
@@ -46,6 +52,16 @@ import {
 } from "@/constants";
 import type { ArticleCategory, Article } from "@/types";
 import { useLoadingStore } from "@/stores/loading";
+// 组件挂载时加载数据
+onMounted(() => {
+  loadCategories();
+  loadArticles(); // 初始加载所有文章
+});
+const router = useRouter();
+// 跳转到文章详情
+const goToArticleDetail = (articleId: number) => {
+  router.push(`/home/detail/${articleId}`);
+};
 const loadingStore = useLoadingStore();
 // 响应式数据
 const isLoading = ref(false);
@@ -59,7 +75,8 @@ const displayItems = computed(() =>
     title: article.title,
     content: article.content,
     publishTime: article.publishTime,
-    value: article.id,
+    articleId: article.articleId, // 修复：使用 articleId 而不是 id
+    value: article.articleId, // 修复：使用 articleId 而不是 id
   }))
 );
 
@@ -95,12 +112,6 @@ const loadArticles = async () => {
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString("zh-CN");
 };
-
-// 组件挂载时加载数据
-onMounted(() => {
-  loadCategories();
-  loadArticles(); // 初始加载所有文章
-});
 </script>
 
 <style scoped lang="scss">

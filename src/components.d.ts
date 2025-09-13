@@ -11,6 +11,7 @@ declare module 'vue' {
     AnalyticContent: typeof import('./components/Analytics/AnalyticContent.vue')['default']
     AnalyticsPanel: typeof import('./components/AnalyticsPanel.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    CommentArea: typeof import('./components/commen/commentArea.vue')['default']
     GlobalLoading: typeof import('./components/GlobalLoading.vue')['default']
     InlineLoading: typeof import('./components/InlineLoading.vue')['default']
     PageLoading: typeof import('./components/PageLoading.vue')['default']

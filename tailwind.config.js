@@ -18,6 +18,6 @@ export default {
   plugins: [],
   // 确保与 Vuetify 样式不冲突
   corePlugins: {
-    preflight: false, // 禁用 Tailwind 的默认样式重置，避免与 Vuetify 冲突
+    preflight: true, // 禁用 Tailwind 的默认样式重置，避免与 Vuetify 冲突
   },
 }

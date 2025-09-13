@@ -13,14 +13,14 @@ export const MOCK_CATEGORIES: ArticleCategory[] = [
 export const MOCK_ARTICLES_MAP: Record<number, Article[]> = {
 	1: [
 		{
-			id: 101,
+			articleId: 101,
 			title: '前端性能优化实战',
 			content: '文章内容：前端性能优化介绍...',
 			kgStructure: '',
 			publishTime: '2025-09-01T10:00:00Z',
 		},
 		{
-			id: 102,
+			articleId: 102,
 			title: 'TypeScript 深入指南',
 			content: '文章内容：TypeScript 实践与注意点...',
 			kgStructure: '',
@@ -29,14 +29,14 @@ export const MOCK_ARTICLES_MAP: Record<number, Article[]> = {
 	],
 	2: [
 		{
-			id: 201,
+			articleId: 201,
 			title: '如何做用户调研',
 			content: '文章内容：用户调研方法与案例...',
 			kgStructure: '',
 			publishTime: '2025-08-21T09:00:00Z',
 		},
 		{
-			id: 202,
+			articleId: 202,
 			title: '产品路线图实操',
 			content: '文章内容：构建与维护产品路线图...',
 			kgStructure: '',
@@ -45,14 +45,14 @@ export const MOCK_ARTICLES_MAP: Record<number, Article[]> = {
 	],
 	3: [
 		{
-			id: 301,
+			articleId: 301,
 			title: '设计体系落地经验',
 			content: '文章内容：设计体系的建设与管理...',
 			kgStructure: '',
 			publishTime: '2025-07-11T08:00:00Z',
 		},
 		{
-			id: 302,
+			articleId: 302,
 			title: '交互设计中的可用性原则',
 			content: '文章内容：可用性研究与提升...',
 			kgStructure: '',
@@ -61,14 +61,14 @@ export const MOCK_ARTICLES_MAP: Record<number, Article[]> = {
 	],
 	4: [
 		{
-			id: 401,
+			articleId: 401,
 			title: '数据可视化最佳实践',
 			content: '文章内容：如何用图表讲好数据故事...',
 			kgStructure: '',
 			publishTime: '2025-06-05T07:00:00Z',
 		},
 		{
-			id: 402,
+			articleId: 402,
 			title: 'ETL 与数据清洗基础',
 			content: '文章内容：数据管道与质量保证...',
 			kgStructure: '',
@@ -77,14 +77,14 @@ export const MOCK_ARTICLES_MAP: Record<number, Article[]> = {
 	],
 	5: [
 		{
-			id: 501,
+			articleId: 501,
 			title: '远程办公高效指南',
 			content: '文章内容：提升远程协作效率的方法...',
 			kgStructure: '',
 			publishTime: '2025-05-01T06:00:00Z',
 		},
 		{
-			id: 502,
+			articleId: 502,
 			title: '时间管理的十个技巧',
 			content: '文章内容：实用的时间管理技巧...',
 			kgStructure: '',
